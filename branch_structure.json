@@ -1,0 +1,18 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "backend",
+    "flutter_frontend",
+    "main"
+  ],
+  "parent": {
+    "backend": "main",
+    "flutter_frontend": "main",
+    "main": null
+  },
+  "order": [
+    "main",
+    "backend",
+    "flutter_frontend"
+  ]
+}
