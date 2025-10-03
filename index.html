@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HealthBot Chat</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      background: white;
+      width: 600px;
+      max-width: 90vw;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 60px;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      resize: none;
+      margin-bottom: 10px;
+    }
+    input[type="file"] {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .mic-button, .send-button {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 8px;
+      cursor: pointer;
+    }
+    .mic-button {
+      background: #ff5252;
+      color: white;
+    }
+    .mic-button.recording {
+      background: #d32f2f;
+    }
+    .send-button {
+      background: #4caf50;
+      color: white;
+    }
+    .chat-box {
+      margin-top: 20px;
+      height: 400px;
+      overflow-y: auto;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    .message {
+      margin: 8px 0;
+      padding: 10px;
+      max-width: 80%;
+      word-wrap: break-word;
+      border-radius: 12px;
+    }
+    .user-message {
+      background-color: #d0ebff;
+      color: #034078;
+      margin-left: auto;
+      text-align: right;
+    }
+    .bot-message {
+      background-color: #d2f8d2;
+      color: #256029;
+      margin-right: auto;
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>🩺 HealthBot Chat</h2>
+
+  <textarea id="userMessage" placeholder="Type your message here..."></textarea>
+
+  <input type="file" id="audioFile" accept="audio/*">
+
+  <button id="micButton" class="mic-button">🎙️ Press & Hold to Speak</button>
+
+  <button onclick="sendMessage()" class="send-button">Send to HealthBot</button>
+
+  <div class="chat-box" id="chatBox"></div>
+</div>
+
+<script>
+  let chatId = null;
+  let recognition;
+  const micButton = document.getElementById("micButton");
+  const userMessage = document.getElementById("userMessage");
+  const chatBox = document.getElementById("chatBox");
+
+  // Speech Recognition Setup
+  if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    recognition = new SpeechRecognition();
+    recognition.lang = 'en-US';
+    recognition.interimResults = false;
+    recognition.continuous = false;
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      userMessage.value = transcript;
+    };
+
+    recognition.onerror = (event) => {
+      console.error('Speech Recognition Error:', event.error);
+    };
+  } else {
+    micButton.disabled = true;
+    micButton.textContent = "Speech not supported";
+  }
+
+  micButton.addEventListener('mousedown', () => {
+    if (recognition) {
+      recognition.start();
+      micButton.classList.add("recording");
+    }
+  });
+
+  micButton.addEventListener('mouseup', () => {
+    if (recognition) {
+      recognition.stop();
+      micButton.classList.remove("recording");
+    }
+  });
+
+  micButton.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    if (recognition) {
+      recognition.start();
+      micButton.classList.add("recording");
+    }
+  });
+
+  micButton.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    if (recognition) {
+      recognition.stop();
+      micButton.classList.remove("recording");
+    }
+  });
+
+  async function sendMessage() {
+    const messageInput = userMessage.value.trim();
+    const audioInput = document.getElementById("audioFile").files[0];
+
+    let payload = {};
+
+    if (messageInput) {
+      payload.message = messageInput;
+    } else if (audioInput) {
+      alert("Audio upload not implemented yet. Please type or use mic.");
+      return;
+    } else {
+      alert("Please enter a message or use mic.");
+      return;
+    }
+
+    if (chatId) {
+      payload.chatId = chatId;
+    }
+
+    try {
+  const response = await fetch("https://api.gohealthcompass.com/api/v1/bot/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGI5MWMzODc3NDY3MmY5MmNiZGFhZGMiLCJpYXQiOjE3NTY5NjE4NzEsImV4cCI6MTc1NzU2NjY3MX0.A1gWPohq9md8zBLkAU06kN3eoYYjuZSUm0WAsnmPV2Q"
+    },
+    body: JSON.stringify(payload)
+  });
+
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.message || "Unknown server error");
+  }
+
+  if (result.status) {
+    chatId = result.body.chatId;
+
+    chatBox.innerHTML = ""; // Clear chat
+
+    result.body.messages.forEach((msg) => {
+      const msgDiv = document.createElement("div");
+      msgDiv.className = `message ${msg.role === "user" ? "user-message" : "bot-message"}`;
+      msgDiv.textContent = msg.message;
+      chatBox.appendChild(msgDiv);
+    });
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+    userMessage.value = "";
+  } else {
+    alert(result.message || "Error talking to HealthBot.");
+  }
+} catch (error) {
+  console.error("Fetch Error:", error.message);
+  alert("Server error: " + error.message);
+}
+
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+# ----------------------------
+# Node.js related
+# ----------------------------
+node_modules
+npm-debug.log
+yarn-error.log
+
+# ----------------------------
+# Python related
+# ----------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.venv
+.Python
+
+# ----------------------------
+# Logs / temp files
+# ----------------------------
+*.log
+*.out
+*.err
+*.swp
+
+# ----------------------------
+# OS / editor files
+# ----------------------------
+.DS_Store
+Thumbs.db
+.vscode
+.idea
+
+# ----------------------------
+# Git / Docker metadata
+# ----------------------------
+.git
+.gitignore
+Dockerfile
+.dockerignore

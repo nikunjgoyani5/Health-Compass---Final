@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Missed Appointment by Doctor</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 0;
+        padding: 40px 0;
+      }
+      .container {
+        background-color: #ffffff;
+        padding: 30px 40px;
+        border-radius: 12px;
+        max-width: 600px;
+        margin: auto;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-top: 6px solid #f0ad4e;
+      }
+      .header {
+        text-align: center;
+        color: #f0ad4e;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      .subtext {
+        text-align: center;
+        color: #777;
+        font-size: 15px;
+        margin-top: -10px;
+      }
+      .greeting {
+        font-size: 16px;
+        margin: 20px 0;
+      }
+      .info {
+        background-color: #fff9e6;
+        border-left: 4px solid #f0ad4e;
+        padding: 15px 20px;
+        border-radius: 6px;
+        font-size: 15px;
+        margin: 20px 0;
+      }
+      .info p {
+        margin: 8px 0;
+      }
+      .info span {
+        font-weight: 600;
+        color: #f0ad4e;
+      }
+      .footer {
+        text-align: center;
+        font-size: 13px;
+        color: #aaa;
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="header">Missed Appointment</h2>
+      <p class="subtext">We apologize for the inconvenience</p>
+      <p class="greeting">Dear <strong>{{fullName}}</strong>,</p>
+
+      <p>
+        We regret to inform you that your scheduled appointment was
+        <strong>missed by the doctor</strong>. Please find the appointment
+        details below:
+      </p>
+
+      <div class="info">
+        <p><span>Doctor:</span> {{doctorName}}</p>
+        <p><span>Date:</span> {{appointmentDate}}</p>
+        <p><span>Time:</span> {{appointmentTime}}</p>
+      </div>
+
+      <p>
+        We understand this may be disappointing. You may reschedule your
+        appointment at your convenience using our platform.
+      </p>
+
+      <p>
+        If you need assistance, please feel free to contact our support team.
+      </p>
+
+      <div class="footer">
+        &copy; {{year}} Your HealthCare App. All rights reserved.
+      </div>
+    </div>
+  </body>
+</html>

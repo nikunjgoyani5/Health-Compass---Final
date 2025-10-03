@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Appointment Cancelled</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f7f6;
+        color: #333;
+        margin: 0;
+        padding: 40px 0;
+      }
+      .container {
+        background-color: #ffffff;
+        padding: 30px 40px;
+        border-radius: 12px;
+        max-width: 600px;
+        margin: auto;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-top: 6px solid #d9534f;
+      }
+      .header {
+        text-align: center;
+        color: #a94442;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      .subtext {
+        text-align: center;
+        color: #666;
+        font-size: 15px;
+        margin-top: -10px;
+      }
+      .greeting {
+        font-size: 16px;
+        margin: 20px 0;
+      }
+      .info {
+        background-color: #fdf2f2;
+        border-left: 4px solid #d9534f;
+        padding: 15px 20px;
+        border-radius: 6px;
+        font-size: 15px;
+        margin: 20px 0;
+      }
+      .info p {
+        margin: 8px 0;
+      }
+      .info span {
+        font-weight: 600;
+        color: #a94442;
+      }
+      .footer {
+        text-align: center;
+        font-size: 13px;
+        color: #888;
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="header">Appointment Cancelled</h2>
+      <p class="subtext">
+        Your upcoming appointment has been cancelled by the doctor
+      </p>
+
+      <p class="greeting">Hello <strong>{{fullName}}</strong>,</p>
+
+      <p>
+        We regret to inform you that your scheduled appointment with
+        <strong>Dr. {{doctorName}}</strong> has been <strong>cancelled</strong>.
+        We apologize for any inconvenience this may cause.
+      </p>
+
+      <div class="info">
+        <p><span>Appointment Date:</span> {{appointmentDate}}</p>
+        <p><span>Time:</span> {{appointmentTime}}</p>
+        <p><span>Doctor:</span> Dr. {{doctorName}}</p>
+      </div>
+
+      <p>
+        Please feel free to reschedule your appointment at your convenience
+        through our platform.
+      </p>
+
+      <div class="footer">
+        &copy; {{year}} Health Compass. All rights reserved.<br />
+      </div>
+    </div>
+  </body>
+</html>

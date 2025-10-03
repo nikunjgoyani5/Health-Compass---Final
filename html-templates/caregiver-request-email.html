@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Caregiver Request {{status}}</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f7f6;
+        color: #333;
+        margin: 0;
+        padding: 40px 0;
+      }
+      .container {
+        background-color: #ffffff;
+        padding: 30px 40px;
+        border-radius: 12px;
+        max-width: 600px;
+        margin: auto;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-top: 6px solid {{borderColor}};
+      }
+      .header {
+        text-align: center;
+        color: {{headerColor}};
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      .subtext {
+        text-align: center;
+        color: #666;
+        font-size: 15px;
+        margin-top: -10px;
+      }
+      .info {
+        background-color: {{infoBg}};
+        border-left: 4px solid {{borderColor}};
+        padding: 15px 20px;
+        border-radius: 6px;
+        font-size: 15px;
+        margin: 20px 0;
+      }
+      .cta {
+        display: block;
+        width: fit-content;
+        margin: 25px auto 10px;
+        background-color: {{buttonColor}};
+        color: #fff;
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-weight: bold;
+      }
+      .cta:hover {
+        opacity: 0.9;
+      }
+      .footer {
+        text-align: center;
+        font-size: 13px;
+        color: #888;
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="header">Caregiver Request {{status}}</h2>
+      <p class="subtext">
+        {{caregiverName}} has {{status}} your caregiver request
+      </p>
+
+      <p>Hello <strong>{{requesterName}}</strong>,</p>
+
+      <p>
+        {{caregiverName}} has
+        <strong>{{status}}</strong> your caregiver request on
+        <strong>{{brandName}}</strong>.
+      </p>
+
+      <div class="info">
+        <p><strong>Caregiver:</strong> {{caregiverName}}</p>
+        <p><strong>Date:</strong> {{actionDate}}</p>
+      </div>
+
+      <a class="cta" href="{{dashboardLink}}" target="_blank">View Caregiver List</a>
+
+      <div class="footer">
+        © {{year}} {{brandName}}. All rights reserved.
+      </div>
+    </div>
+  </body>
+</html>

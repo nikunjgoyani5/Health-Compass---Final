@@ -1,0 +1,135 @@
+(health_bot) C:\projects\healthcompass_2>
+
+
+HEALTH COMPASS AI SYSTEM - BASIC EXECUTION COMMANDS
+===================================================
+
+0. CHECK OPENAI CONFIGURATION FIRST:
+   python check_openai_config.py
+   
+   This will validate your OpenAI API key and model settings.
+
+1. TEST GPT-POWERED OFF-TOPIC DETECTION (Recommended):
+   python test_gpt_detection.py
+   
+   This tests the new AI-powered query classification system.
+
+2. TEST BASIC OFF-TOPIC DETECTION (Optional):
+   python test_off_topic_simple.py
+   
+   This tests the keyword-based fallback detection.
+
+3. START THE APPLICATION:
+   python main.py
+
+4. OPEN CHROME AND GO TO:
+   http://localhost:8000/docs
+
+5. TEST POST /api/bot/ask:
+   - Click POST /api/bot/ask
+   - Click "Try it out"
+   - Enter this JSON:
+   {
+     "query": "What is vitamin C?"
+   }
+   - Click "Execute"
+
+6. TEST DIFFERENT QUERIES:
+   {
+     "query": "What is Omega-3 Fish Oil?"
+   }
+
+   {
+     "query": "What supplements help with sleep?"
+   }
+
+   {
+     "query": "Tell me about zinc"
+   }
+
+7. TEST OFF-TOPIC DETECTION:
+   {
+     "query": "What is Python programming language?"
+   }
+   
+   This should return a polite decline message, NOT a full answer about Python.
+
+8. CHECK HEALTH STATUS:
+   http://localhost:8000/health
+
+9. VIEW API DOCUMENTATION:
+   http://localhost:8000/docs
+
+10. ALTERNATIVE DOCUMENTATION:
+    http://localhost:8000/redoc
+
+11. STOP THE APPLICATION:
+    Press Ctrl+C in the terminal
+
+12. QUICK TEST COMMANDS (curl):
+    curl -X POST "http://localhost:8000/api/bot/ask" -H "Content-Type: application/json" -d "{\"query\": \"What is vitamin C?\"}"
+
+13. TEST OFF-TOPIC DETECTION (curl):
+    curl -X POST "http://localhost:8000/api/bot/ask" -H "Content-Type: application/json" -d "{\"query\": \"What is Python programming?\"}"
+
+14. SAVE THESE URLs:
+    - Main API: http://localhost:8000/docs
+    - Health Check: http://localhost:8000/health
+    - Alternative Docs: http://localhost:8000/redoc
+
+TROUBLESHOOTING:
+================
+
+If you get "500 Internal Server Error":
+1. Run: python check_openai_config.py
+2. Check your .env file has correct OPENAI_MODEL
+3. Use only: gpt-4, gpt-4-turbo-preview, or gpt-3.5-turbo
+4. NEVER use: gpt-5 (doesn't exist yet!)
+
+OFF-TOPIC QUERY TESTING:
+========================
+
+The system now uses pure GPT intelligence for query classification:
+
+🎯 GPT-ONLY DETECTION:
+- Uses GPT-3.5-turbo for intelligent classification
+- Understands context and nuance naturally
+- No more keyword lists or manual rules
+- Pure AI intelligence for all decisions
+- Automatically handles edge cases and new supplements
+
+✅ HEALTH-RELATED (will get full answers):
+- "What is vitamin C?"
+- "Tell me about omega-3 supplements"
+- "What are the benefits of exercise?"
+- "How to improve sleep quality?"
+- "How to build muscle?" (correctly identified despite containing 'machine')
+- "Tell me about quercetin" (automatically recognized as supplement)
+- "What is curcumin?" (automatically recognized as supplement)
+
+❌ OFF-TOPIC (will get polite decline):
+- "What is Python programming?"
+- "How to fix a car engine?"
+- "What is quantum physics?"
+- "How to cook pasta?"
+- "What is machine learning?" (correctly identified despite containing 'machine')
+
+🎯 KEY BENEFITS:
+- Saves OpenAI API tokens (no API calls for off-topic queries)
+- Keeps responses focused on health topics
+- Polite and professional decline messages
+- Clear explanation of supported topics
+- Pure AI intelligence - no manual keyword maintenance
+- Automatically adapts to new supplements and health topics
+- Handles edge cases naturally through context understanding
+
+NOTES:
+- Just run "python main.py" and open "http://localhost:8000/docs" in Chrome
+- Everything else can be tested through the interactive Swagger UI
+- No Postman needed - everything is built-in
+- Test factsheet search vs GPT-4 fallback
+- Verify data source indicators in responses
+- Test off-topic query detection
+- Off-topic queries are now detected BEFORE any AI processing
+- GPT provides pure AI intelligence for classification
+- No more keyword lists - pure context understanding

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Missed Vaccine Dose 🚨</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 0;
+        padding: 40px 0;
+      }
+      .container {
+        background-color: #ffffff;
+        padding: 30px 40px;
+        border-radius: 12px;
+        max-width: 600px;
+        margin: auto;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-top: 6px solid #dc3545;
+      }
+      .header {
+        text-align: center;
+        color: #dc3545;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      .subtext {
+        text-align: center;
+        color: #777;
+        font-size: 15px;
+        margin-top: -10px;
+      }
+      .greeting {
+        font-size: 16px;
+        margin: 20px 0;
+      }
+      .info {
+        background-color: #fff1f1;
+        border-left: 4px solid #dc3545;
+        padding: 15px 20px;
+        border-radius: 6px;
+        font-size: 15px;
+        margin: 20px 0;
+      }
+      .info p {
+        margin: 8px 0;
+      }
+      .info span {
+        font-weight: 600;
+        color: #dc3545;
+      }
+      .footer {
+        text-align: center;
+        font-size: 13px;
+        color: #aaa;
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="header">Missed Vaccine Dose 🚨</h2>
+      <p class="subtext">Stay on track with your vaccination schedule</p>
+      <p class="greeting">Dear <strong>{{fullName}}</strong>,</p>
+      <p>
+        Our records indicate that you
+        <strong>missed your scheduled vaccine dose</strong>. Please review the
+        details below:
+      </p>
+      <div class="info">
+        <p><span>Vaccine:</span> {{vaccineName}}</p>
+        <p><span>Date:</span> {{date}}</p>
+        <p><span>Time:</span> {{scheduledTime}}</p>
+      </div>
+      <p>
+        It's important to stay on schedule for the best protection. We recommend
+        contacting your healthcare provider to reschedule your dose at the
+        earliest convenience.
+      </p>
+      <p>If you need any help, feel free to reach out to our support team.</p>
+      <div class="footer">
+        &copy; {{year}} Your HealthCare App. All rights reserved.
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Two-Step Verification</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f7f6;
+        color: #333;
+        margin: 0;
+        padding: 40px 0;
+      }
+      .container {
+        background-color: #ffffff;
+        padding: 30px 40px;
+        border-radius: 12px;
+        max-width: 600px;
+        margin: auto;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-top: 6px solid #2d918c;
+      }
+      .header {
+        text-align: center;
+        color: #004d49;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      .subtext {
+        text-align: center;
+        color: #666;
+        font-size: 15px;
+        margin-top: -10px;
+      }
+      .greeting {
+        font-size: 16px;
+        margin: 20px 0;
+      }
+      .instructions {
+        background-color: #f1f8f7;
+        border-left: 4px solid #2d918c;
+        padding: 15px 20px;
+        border-radius: 6px;
+        font-size: 15px;
+        margin: 20px 0;
+      }
+      .instructions p {
+        margin: 10px 0;
+        color: #004d49;
+        font-weight: 500;
+      }
+      .qr-code {
+        text-align: center;
+        margin: 25px 0;
+      }
+      .qr-code img {
+        max-width: 180px;
+        border: 2px solid #2d918c;
+        border-radius: 6px;
+      }
+      .footer {
+        text-align: center;
+        font-size: 13px;
+        color: #888;
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="header">Two-Step Verification Setup</h2>
+      <p class="subtext">
+        Secure your account with an extra layer of protection
+      </p>
+
+      <p class="greeting">Hello <strong>{{username}}</strong>,</p>
+
+      <p>
+        To keep your account safe, we recommend enabling Two-Step Verification.
+        Follow the steps below to complete the setup using Google Authenticator.
+      </p>
+
+      <div class="instructions">
+        <p>1. Install the Google Authenticator app on your phone.</p>
+        <p>2. Open the app and tap the '+' icon to add a new account.</p>
+        <p>3. Choose "Scan a QR code" and scan the code below.</p>
+      </div>
+
+      <div class="qr-code">
+        <img src="{{twofactorqr}}" alt="QR Code for 2FA" />
+      </div>
+
+      <p>
+        Once scanned, your app will start generating one-time login codes for
+        your account. Enter these codes along with your password when logging in
+        for enhanced security.
+      </p>
+
+      <div class="footer">
+        &copy; {{year}} Health Compass. All rights reserved.<br />
+      </div>
+    </div>
+  </body>
+</html>

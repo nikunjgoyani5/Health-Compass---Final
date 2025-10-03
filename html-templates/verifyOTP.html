@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>OTP Verification</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f7f6;
+        color: #333;
+        margin: 0;
+        padding: 40px 0;
+      }
+      .container {
+        background-color: #ffffff;
+        padding: 30px 40px;
+        border-radius: 12px;
+        max-width: 600px;
+        margin: auto;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-top: 6px solid #2d918c;
+      }
+      .header {
+        text-align: center;
+        color: #004d49;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      .subtext {
+        text-align: center;
+        color: #666;
+        font-size: 15px;
+        margin-top: -10px;
+      }
+      .greeting {
+        font-size: 16px;
+        margin: 20px 0;
+      }
+      .otp-box {
+        background-color: #f1f8f7;
+        border-left: 4px solid #2d918c;
+        padding: 20px;
+        border-radius: 6px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: #004d49;
+        margin: 30px 0;
+        letter-spacing: 4px;
+      }
+      .cta {
+        display: block;
+        width: fit-content;
+        margin: 25px auto 10px;
+        background-color: #2d918c;
+        color: #fff;
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+      }
+      .cta:hover {
+        background-color: #23736e;
+      }
+      .footer {
+        text-align: center;
+        font-size: 13px;
+        color: #888;
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="header">OTP Verification</h2>
+
+      <p class="greeting">Hello <strong>{{fullName}}</strong>,</p>
+
+      <p>
+        To proceed with your request securely, please use the One-Time Password
+        (OTP) provided below.
+      </p>
+
+      <div class="otp-box">{{otp}}</div>
+
+      <p style="margin-bottom: 20px">
+        This OTP is valid for the next 1 minutes. Please do not share it with
+        anyone.
+      </p>
+
+      <div class="footer">
+        &copy; {{year}} Health Compass. All rights reserved.<br />
+      </div>
+    </div>
+  </body>
+</html>
